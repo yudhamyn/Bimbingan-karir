@@ -1,12 +1,35 @@
-Langkah install
-1.PASTIKAN SUDAH PUNYA PHP,GIT,COMPOSER
-2.CLONE ATAU DOWNLOAD ZIP FOLDERNYA
-3.BUKA DI TEXT EDITOR SEPERTI VSCODE
-4.BUAT DATABASE dan sesuaikan namanya dengan yag di env(EX: XAMPP/LARAGON)
-5.BUKA TERMINAL DI VS CODE, PASTIKAN ROUTE KE FOLDER
-6.KETIK composer install lalu composer update
-7.KETIK php artisan migrate:fresh --seed
-8.KETIK php artisan key:generate(OPSIONAL KARENA SUDAH SAYA INCLUDE FILE .ENV NYA)
-9.KETIK php artisan serve 
-10.KLIK KANAN LINK LOCAL YANG MUNCUL (Starting Laravel development server: http://127.0.0.1:8000)
-11.website sudah terbuka di browser default
+# Langkah Instalasi
+
+1. **Pastikan sudah memiliki software berikut:**
+   - **PHP** (versi terbaru disarankan)
+   - **Git**
+   - **Composer**
+
+2. **Clone atau Download ZIP Folder Proyek**  
+   Clone repositori menggunakan Git atau download folder file ZIP.
+
+3. **Buka Proyek di Text Editor**  
+   Buka folder proyek yang sudah diclone atau ekstrak menggunakan text editor seperti **VS Code**.
+
+4. **Buat Database**  
+   Buat database baru dan sesuaikan namanya dengan yang ada di file `.env` (misalnya: menggunakan aplikasi seperti **XAMPP** atau **Laragon**).
+
+5. **Buka Terminal di VS Code**  
+   Pastikan terminal sudah berada di dalam direktori folder proyek. Anda bisa membuka terminal di VS Code dengan menekan `Ctrl + ~` atau klik terminal manual di navbar vscode.
+
+6. **Instalasi Dependencies**  
+   Ketik perintah berikut untuk menginstal dependensi proyek:
+    composer install
+    composer update
+7. **Migrasi dan Seeding Database**  
+    php artisan migrate:fresh --seed
+
+8. **Generate Application Key (Opsional karena sudah saya include .env nya)**  
+    php artisan key:generate
+
+9. **Jalankan Server Laravel**  
+    php artisan serve
+
+10. **Akses Website di Browser**
+    klik kanan
+    Starting Laravel development server: http://127.0.0.1:8000
