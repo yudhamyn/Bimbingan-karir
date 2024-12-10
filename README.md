@@ -19,16 +19,16 @@
 
 6. **Instalasi Dependencies**  
    Ketik perintah berikut untuk menginstal dependensi proyek:
-    - composer install
-    - composer update
+    - `composer install`
+    - `composer update`
 7. **Migrasi dan Seeding Database**  
-    - php artisan migrate:fresh --seed
+    - `php artisan migrate:fresh --seed`
 
 8. **Generate Application Key (Opsional karena sudah saya include .env nya)**  
-    - php artisan key:generate
+    - `php artisan key:generate`
 
 9. **Jalankan Server Laravel**  
-    - php artisan serve
+    - `php artisan serve`
 
 10. **Akses Website di Browser**
     klik kanan
