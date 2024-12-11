@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-    <title>Sistem Temu Janji Pasien</title>
+    <title>Poliklinik</title>
     <meta content="" name="description">
     <meta content="" name="keywords">
 
@@ -56,15 +56,15 @@
             <div class="container position-relative" data-aos="fade-up" data-aos-delay="100">
                 <div class="row justify-content-center">
                     <div class="col-xl-6 col-lg-9 text-center">
-                        <h1>Sistem Temu Janji Pasien - Dokter</h1>
+                        <h1>Poliklinik Bimbingan Karir</h1>
                         <h2>Bimbingan Karir Junior Website</h2>
                     </div>
                 </div>
                 <div class="row icon-boxes">
                     <?php
                     $userTypes = [
-                        ['route' => 'pasien.login', 'title' => 'Login Sebagai Pasien', 'description' => 'Apabila Anda adalah seorang Pasien silahkan Login terlebih dahulu untuk melakukan pendaftaran sebagai Pasien!'],
-                        ['route' => 'dokter.login', 'title' => 'Login Sebagai Dokter', 'description' => 'Apabila Anda adalah seorang Dokter silahkan Login terlebih dahulu untuk memulai melayani Pasien!'],
+                        ['route' => 'pasien.login', 'title' => 'Login Sebagai Pasien', 'description' => 'Apabila Anda adalah seorang Pasien silahkan Login terlebih dahulu untuk memulai konsultasi dengan Dokter!, Jika belum mempunyai akun silahkan mendaftar terlebih dahulu!'],
+                        ['route' => 'dokter.login', 'title' => 'Login Sebagai Dokter', 'description' => 'Apabila Anda adalah seorang Dokter silahkan Login terlebih dahulu untuk memulai konsultasi dengan Pasien!, Jika belum mempunyai akun silahkan meminta admin unduk dibuatkan akun dokter!'],
                     ];
 
                     foreach ($userTypes as $userType) {
