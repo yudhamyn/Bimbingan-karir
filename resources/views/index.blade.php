@@ -37,7 +37,7 @@
     <header id="header" class="fixed-top">
         <div class="container d-flex align-items-center justify-content-between">
 
-            <h1 class="logo"><a href="#">Poliklinik BK</a></h1>
+            <h1 class="logo"><a href="#">Poliklinik</a></h1>
 
 
             <nav id="navbar" class="navbar">
@@ -57,7 +57,7 @@
                 <div class="row justify-content-center">
                     <div class="col-xl-6 col-lg-9 text-center">
                         <h1>Poliklinik Bimbingan Karir</h1>
-                        <h2>Bimbingan Karir Junior Website</h2>
+                        <h2>Junior Website</h2>
                     </div>
                 </div>
                 <div class="row icon-boxes">
@@ -70,7 +70,6 @@
                     foreach ($userTypes as $userType) {
                         echo '<div class="col-md-5 col-lg-6 d-flex align-items-center mb-5 mb-lg-0" data-aos="zoom-in" data-aos-delay="200">';
                         echo '<div class="icon-box">';
-                        // Membungkus seluruh konten dengan <a> supaya seluruh card bisa diklik
                         echo '<a href="' . route($userType['route']) . '" class="d-block text-decoration-none">';
                         echo '<div class="icon"><i class="ri-user-line"></i></div>';
                         echo '<h4 class="title">' . $userType['title'] . '</h4>';
