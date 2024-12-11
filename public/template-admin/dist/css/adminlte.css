@@ -32,6 +32,9 @@
   --danger: #dc3545;
   --light: #f8f9fa;
   --dark: #343a40;
+  --jadwal:#82b7ec;
+  --memeriksa:#477fb7;
+  --riwayat:#236eb9;
   --breakpoint-xs: 0;
   --breakpoint-sm: 576px;
   --breakpoint-md: 768px;
@@ -165,7 +168,7 @@ a {
 }
 
 a:hover {
-  color: #ecf0f5;
+  color: #0056b3;
   text-decoration: none;
 }
 
