@@ -49,7 +49,7 @@ class PasienRegistrationController extends Controller
     public function register()
     {
         if (session()->has('no_ktp')) {
-            return redirect()->route('pasien.daftarpoli');
+            return redirect()->route('pasien.login');
         }
         return view('pasien.register.index');
     }
@@ -88,7 +88,7 @@ class PasienRegistrationController extends Controller
         if ($pasienCheck) {
             $request->session()->put('no_ktp', $request->no_ktp);
 
-            return redirect()->route('pasien.daftarpoli');
+            return redirect()->route('pasien.login');
         }
         return redirect()->route('pasien.login');
     }

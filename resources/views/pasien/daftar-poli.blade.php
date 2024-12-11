@@ -7,5 +7,12 @@
 </head>
 <body>
     <h1>dafttar poli</h1>
+
+
+    <form action="{{ url('/pasien/logout') }}" method="POST">
+        @csrf
+        <button type="submit">Logout</button>
+    </form>
+    
 </body>
 </html>

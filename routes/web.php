@@ -38,6 +38,7 @@ Route::get('/pasien/register', [PasienRegistrationController::class, 'register']
 Route::post('/pasien/register', [PasienRegistrationController::class, 'registerPasien']);
 Route::get('/pasien/login', [PasienRegistrationController::class, 'login'])->name('pasien.login');
 Route::post('/pasien/login', [PasienRegistrationController::class, 'loginPasien']);
+Route::post('/pasien/logout', [LoginController::class, 'logoutPasien']);
 Route::get('/pasien/logout', [PasienRegistrationController::class, 'logout'])->name('pasien.logout');
 
 Route::middleware(['pasien.auth'])->group(function () {
