@@ -61,7 +61,7 @@
                     </div>
                 </div>
                 <div class="row icon-boxes">
-                    <?php
+                <?php
                     $userTypes = [
                         ['route' => 'pasien.login', 'title' => 'Login Sebagai Pasien', 'description' => 'Apabila Anda adalah seorang Pasien silahkan Login terlebih dahulu untuk memulai konsultasi dengan Dokter!, Jika belum mempunyai akun silahkan mendaftar terlebih dahulu!'],
                         ['route' => 'dokter.login', 'title' => 'Login Sebagai Dokter', 'description' => 'Apabila Anda adalah seorang Dokter silahkan Login terlebih dahulu untuk memulai konsultasi dengan Pasien!, Jika belum mempunyai akun silahkan meminta admin unduk dibuatkan akun dokter!'],
@@ -70,13 +70,17 @@
                     foreach ($userTypes as $userType) {
                         echo '<div class="col-md-5 col-lg-6 d-flex align-items-center mb-5 mb-lg-0" data-aos="zoom-in" data-aos-delay="200">';
                         echo '<div class="icon-box">';
+                        // Membungkus seluruh konten dengan <a> supaya seluruh card bisa diklik
+                        echo '<a href="' . route($userType['route']) . '" class="d-block text-decoration-none">';
                         echo '<div class="icon"><i class="ri-user-line"></i></div>';
-                        echo '<h4 class="title"><a href="' . route($userType['route']) . '">' . $userType['title'] . '</a></h4>';
+                        echo '<h4 class="title">' . $userType['title'] . '</h4>';
                         echo '<p class="description">' . $userType['description'] . '</p>';
+                        echo '</a>';
                         echo '</div>';
                         echo '</div>';
                     }
                     ?>
+
                 </div>
             </div>
         </section>
