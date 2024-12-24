@@ -49,6 +49,10 @@
                                             data-target="#editModal{{ $jadwal->id }}">
                                             <i class="fas fa-edit"></i> Edit
                                         </button>
+                                        <button class="btn btn-danger" data-toggle="modal"
+                                            data-target="#deleteModal{{ $jadwal->id }}">
+                                            <i class="fas fa-trash"></i> Hapus
+                                        </button>   
                                     </td>
                                 </tr>
                             @endforeach
@@ -186,6 +190,35 @@
                                 </div>
                             </div>
                         </div>
+
+                        <!-- Modal Delete -->
+                        <div class="modal fade text-left" id="deleteModal{{ $jadwal->id }}" tabindex="-1"
+                            role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="deleteModalLabel">Hapus Data</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body text-left">
+                                        <p>Apakah Anda yakin ingin menghapus data ini?</p>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary"
+                                            data-dismiss="modal">Tutup</button>
+                                        <form action="{{ route('jadwalperiksa.destroy', ['id' => $jadwal->id]) }}"
+                                            method="POST">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="submit" class="btn btn-danger">Hapus</button>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
                     @endforeach
 
                 </div>
