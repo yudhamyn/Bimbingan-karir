@@ -60,6 +60,8 @@ Route::middleware(['auth', 'role:dokter'])->group(function () {
 
     Route::get('/dokter/memeriksa-pasien', [PeriksaController::class, 'index'])->name('memeriksapasien');
     Route::post('/dokter/memeriksa-pasien/{id}', [PeriksaController::class, 'update'])->name('memeriksapasien.update');
+    Route::delete('/dokter/memeriksa-pasien/{id}', [PeriksaController::class, 'destroy'])->name('memeriksapasien.destroy');
+    Route::delete('/dokter/memeriksa-pasien/{id}', [PeriksaController::class, 'delete'])->name('memeriksapasien.delete');
 
     Route::get('/dokter/edit-periksa/{id}', [PeriksaController::class, 'edit'])->name('editperiksa');
     Route::post('/dokter/edit-periksa/{id}', [PeriksaController::class, 'updatePeriksa'])->name('editperiksa.update');

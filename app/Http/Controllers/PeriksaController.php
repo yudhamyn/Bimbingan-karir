@@ -67,6 +67,22 @@ class PeriksaController extends Controller
         return view('dokter.edit-periksa', compact('daftarPoli', 'obats'));
     }
 
+    public function editPeriksa($id)
+    {
+        $periksa = Periksa::find($id);
+        $obats = Obat::all();
+
+        return view('dokter.edit-periksa', compact('periksa', 'obats'));
+    }
+
+    public function delete($id)
+    {
+        $periksa = DaftarPoli::find($id);
+        $periksa->delete();
+        return redirect()->route('memeriksapasien')->with('success', 'Data Periksa Berhasil Dihapus');
+    }
+
+
     public function updatePeriksa(Request $request, $id)
     {
         $request->validate(
@@ -144,6 +160,7 @@ class PeriksaController extends Controller
      */
     public function destroy($id)
     {
-        //
+        DaftarPoli::destroy($id);
+        return redirect()->route('memeriksapasien')->with('success', 'Data berhasil dihapus');
     }
 }
