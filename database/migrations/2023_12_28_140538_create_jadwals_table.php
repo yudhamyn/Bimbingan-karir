@@ -17,6 +17,7 @@ class CreateJadwalsTable extends Migration
             $table->id();
             $table->foreignId('id_dokter')->constrained('dokters')->onDelete('cascade');
             $table->enum('hari', ['Senin', 'Selasa', 'Rabu', 'Kamis', 'Jumat', 'Sabtu']);
+            $table->enum('aktif', ['Y','N']);
             $table->time('jam_mulai');
             $table->time('jam_selesai');
             $table->timestamps();

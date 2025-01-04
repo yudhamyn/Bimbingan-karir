@@ -21,16 +21,6 @@ class JadwalController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
@@ -38,23 +28,33 @@ class JadwalController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate(
+        $request->validate([
+            'id_dokter' => 'required',
+            'hari' => 'required',
+            'jam_mulai' => 'required',
+            'jam_selesai' => 'required',
+            'aktif' => 'required',
+        ], [
+            'id_dokter.required' => 'Dokter tidak boleh kosong',
+            'hari.required' => 'Hari tidak boleh kosong',
+            'jam_mulai.required' => 'Jam Mulai tidak boleh kosong',
+            'jam_selesai.required' => 'Jam Selesai tidak boleh kosong',
+            'aktif.required' => 'Status aktif tidak boleh kosong',
+        ]);
 
-            [
-                'id_dokter' => 'required',
-                'hari' => 'required',
-                'jam_mulai' => 'required',
-                'jam_selesai' => 'required',
-                'aktif' => 'required',
-            ],
-            [
-                'id_dokter.required' => 'Dokter tidak boleh kosong',
-                'hari.required' => 'Hari tidak boleh kosong',
-                'jam_mulai.required' => 'Jam Mulai tidak boleh kosong',
-                'jam_selesai.required' => 'Jam Selesai tidak boleh kosong',
-                'aktif.required' => 'Aktif tidak boleh kosong',
-            ]
-        );
+        // Cek apakah dokter sudah memiliki jadwal di hari yang sama
+        $existingSchedule = Jadwal::where('id_dokter', $request->id_dokter)
+            ->where('hari', $request->hari)
+            ->first();
+
+        if ($existingSchedule) {
+            return redirect()->route('jadwalperiksa')->with('error', 'Dokter sudah memiliki jadwal pada hari ini.');
+        }
+
+        // Jika ada dokter baru aktif, nonaktifkan dokter aktif lainnya
+        if ($request->aktif === 'aktif') {
+            Jadwal::where('aktif', 'Y')->update(['aktif' => 'N']);
+        }
 
         $aktifValue = ($request->aktif == 'aktif') ? 'Y' : 'N';
 
@@ -64,34 +64,13 @@ class JadwalController extends Controller
             'hari' => $request->hari,
             'jam_mulai' => $request->jam_mulai,
             'jam_selesai' => $request->jam_selesai,
-            'aktif' => $aktifValue, //mengubah nilai yang sudah ada
+            'aktif' => $aktifValue,
         ]);
+
         $jadwal->dokter()->associate($dokter);
         $jadwal->save();
 
         return redirect()->route('jadwalperiksa')->with('success', 'Jadwal berhasil ditambahkan');
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
     }
 
     /**
@@ -103,23 +82,34 @@ class JadwalController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $request->validate(
+        $request->validate([
+            'id_dokter' => 'required',
+            'hari' => 'required',
+            'jam_mulai' => 'required',
+            'jam_selesai' => 'required',
+            'aktif' => 'required',
+        ], [
+            'id_dokter.required' => 'Dokter tidak boleh kosong',
+            'hari.required' => 'Hari tidak boleh kosong',
+            'jam_mulai.required' => 'Jam Mulai tidak boleh kosong',
+            'jam_selesai.required' => 'Jam Selesai tidak boleh kosong',
+            'aktif.required' => 'Status aktif tidak boleh kosong',
+        ]);
 
-            [
-                'id_dokter' => 'required',
-                'hari' => 'required',
-                'jam_mulai' => 'required',
-                'jam_selesai' => 'required',
-                'aktif' => 'required',
-            ],
-            [
-                'id_dokter.required' => 'Dokter tidak boleh kosong',
-                'hari.required' => 'Hari tidak boleh kosong',
-                'jam_mulai.required' => 'Jam Mulai tidak boleh kosong',
-                'jam_selesai.required' => 'Jam Selesai tidak boleh kosong',
-                'aktif.required' => 'Aktif tidak boleh kosong',
-            ]
-        );
+        // Validasi apakah dokter sudah memiliki jadwal di hari yang sama (selain jadwal yang sedang diupdate)
+        $existingSchedule = Jadwal::where('id_dokter', $request->id_dokter)
+            ->where('hari', $request->hari)
+            ->where('id', '!=', $id)
+            ->first();
+
+        if ($existingSchedule) {
+            return redirect()->route('jadwalperiksa')->with('error', 'Dokter sudah memiliki jadwal pada hari ini.');
+        }
+
+        // Jika ada dokter baru aktif, nonaktifkan dokter aktif lainnya
+        if ($request->aktif === 'aktif') {
+            Jadwal::where('aktif', 'Y')->update(['aktif' => 'N']);
+        }
 
         $aktifValue = ($request->aktif == 'aktif') ? 'Y' : 'N';
 
@@ -130,7 +120,7 @@ class JadwalController extends Controller
             'hari' => $request->hari,
             'jam_mulai' => $request->jam_mulai,
             'jam_selesai' => $request->jam_selesai,
-            'aktif' => $aktifValue, //mengubah nilai yang sudah ada
+            'aktif' => $aktifValue,
         ]);
 
         return redirect()->route('jadwalperiksa')->with('success', 'Jadwal berhasil diubah');
