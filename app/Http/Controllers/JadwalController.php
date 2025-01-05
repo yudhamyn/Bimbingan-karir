@@ -51,9 +51,11 @@ class JadwalController extends Controller
             return redirect()->route('jadwalperiksa')->with('error', 'Dokter sudah memiliki jadwal pada hari ini.');
         }
 
-        // Jika ada dokter baru aktif, nonaktifkan dokter aktif lainnya
+        // Jika jadwal baru diaktifkan, nonaktifkan jadwal aktif lainnya hanya untuk dokter terkait
         if ($request->aktif === 'aktif') {
-            Jadwal::where('aktif', 'Y')->update(['aktif' => 'N']);
+            Jadwal::where('id_dokter', $request->id_dokter)
+                ->where('aktif', 'Y')
+                ->update(['aktif' => 'N']);
         }
 
         $aktifValue = ($request->aktif == 'aktif') ? 'Y' : 'N';
@@ -66,9 +68,6 @@ class JadwalController extends Controller
             'jam_selesai' => $request->jam_selesai,
             'aktif' => $aktifValue,
         ]);
-
-        $jadwal->dokter()->associate($dokter);
-        $jadwal->save();
 
         return redirect()->route('jadwalperiksa')->with('success', 'Jadwal berhasil ditambahkan');
     }
@@ -106,9 +105,12 @@ class JadwalController extends Controller
             return redirect()->route('jadwalperiksa')->with('error', 'Dokter sudah memiliki jadwal pada hari ini.');
         }
 
-        // Jika ada dokter baru aktif, nonaktifkan dokter aktif lainnya
+        // Jika jadwal yang diupdate diaktifkan, nonaktifkan jadwal aktif lainnya hanya untuk dokter terkait
         if ($request->aktif === 'aktif') {
-            Jadwal::where('aktif', 'Y')->update(['aktif' => 'N']);
+            Jadwal::where('id_dokter', $request->id_dokter)
+                ->where('aktif', 'Y')
+                ->where('id', '!=', $id)
+                ->update(['aktif' => 'N']);
         }
 
         $aktifValue = ($request->aktif == 'aktif') ? 'Y' : 'N';
