@@ -24,7 +24,7 @@ class CreateUsersTable extends Migration
             $table->string('role');
             $table->rememberToken();
             $table->timestamps();
-            $table->foreignId('id_dokter')->nullable()->constrained('dokters')->onDelete('cascade');
+            $table->foreignId('id_dokter')->nullable();
         });
     }
 

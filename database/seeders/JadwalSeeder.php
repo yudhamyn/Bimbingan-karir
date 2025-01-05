@@ -20,25 +20,7 @@ class JadwalSeeder extends Seeder
                 'jam_mulai' => '08:00',
                 'jam_selesai' => '12:00',
                 'id_dokter' => 1,
-            ],
-            [
-                'hari' => 'Selasa',
-                'jam_mulai' => '08:00',
-                'jam_selesai' => '12:00',
-                'id_dokter' => 2,
-            ],
-            [
-                'hari' => 'Rabu',
-                'jam_mulai' => '08:00',
-                'jam_selesai' => '12:00',
-                'id_dokter' => 3,
-            ],
-            [
-                'hari' => 'Kamis',
-                'jam_mulai' => '08:00',
-                'jam_selesai' => '12:00',
-                'id_dokter' => 1,
-            ],
+            ]
 
         ]);
     }
