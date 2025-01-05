@@ -26,7 +26,7 @@ class ObatSeeder extends Seeder
                 'harga' => '20000',
             ],
             [
-                'nama_obat' => 'Citirizen',
+                'nama_obat' => 'Panadol',
                 'kemasan' => 'Strip',
                 'harga' => '5000',
             ]

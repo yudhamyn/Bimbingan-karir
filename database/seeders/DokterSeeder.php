@@ -16,23 +16,11 @@ class DokterSeeder extends Seeder
     {
         DB::table('dokters')->insert([
             [
-                'nama' => 'Dr. Andi',
+                'nama' => 'Dr. Yudha',
                 'alamat' => 'Jl. Raya No. 2',
-                'no_hp' => '081234567890',
+                'no_hp' => '082131047298',
                 'id_poli' => 1,
-            ],
-            [
-                'nama' => 'Dr. Budi',
-                'alamat' => 'Jl. Raya No. 3',
-                'no_hp' => '081234567891',
-                'id_poli' => 2,
-            ],
-            [
-                'nama' => 'Dr. Caca',
-                'alamat' => 'Jl. Raya No. 4',
-                'no_hp' => '081234567892',
-                'id_poli' => 3,
-            ],
+            ]
 
         ]);
     }
