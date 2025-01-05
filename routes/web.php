@@ -14,6 +14,7 @@ use App\Http\Controllers\PasienRegistrationController;
 use App\Http\Controllers\PeriksaController;
 use App\Http\Controllers\PoliController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\RiwayatPasienController;
 
 /*
 |--------------------------------------------------------------------------
@@ -46,6 +47,7 @@ Route::middleware(['pasien.auth'])->group(function () {
     Route::post('/pasien/daftar-poli', [DaftarPoliController::class, 'store'])->name('pasien.daftarpoli.store');
     Route::get('/getJadwals', [DaftarPoliController::class, 'getJadwals'])->name('getJadwals');
     Route::get('/pasien/selesai/{id}', [DaftarPoliController::class, 'selesai'])->name('pasien.selesai');
+    Route::get('/riwayat-pasien', [RiwayatPasienController::class, 'index'])->name('pasien.riwayatpasien');
 });
 
 

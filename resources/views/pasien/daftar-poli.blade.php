@@ -95,6 +95,9 @@
                                     <button type="submit" class="btn btn-primary">Submit</button>
                                     <button type="reset" class="btn btn-secondary">Reset</button>
                                 </div>
+                                <a href="/riwayat-pasien">
+                        <button type="button" class="btn btn-outline-primary">Lihat Riwayat</button>
+                    </a>
                                 <a href="/pasien/logout">
                                     <button class="logout-style btn btn-danger" data-toggle="tooltip"
                                         data-placement="top" title="Logout" type="button">

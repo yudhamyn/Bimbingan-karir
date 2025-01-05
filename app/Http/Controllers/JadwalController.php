@@ -15,8 +15,8 @@ class JadwalController extends Controller
      */
     public function index()
     {
-        $jadwals = Jadwal::all();
-        $dokters = Dokter::all();
+        $jadwals = Jadwal::where("id_dokter", auth()->user()->id_dokter)->get();
+        $dokters = Dokter::where("id", auth()->user()->id_dokter)->get();
         return view('dokter.jadwal-periksa', compact('jadwals', 'dokters'));
     }
 

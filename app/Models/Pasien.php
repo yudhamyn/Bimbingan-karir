@@ -29,7 +29,7 @@ class Pasien extends Authenticatable
 
     public function getAuthIdentifierName()
     {
-        return 'no_ktp'; // Make sure this matches the actual field name in your database
+        return 'no_ktp'; 
     }
 
     public function daftarPoli()

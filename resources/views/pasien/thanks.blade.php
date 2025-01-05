@@ -30,6 +30,9 @@
                     <a href="/pasien/logout">
                         <button type="button" class="btn btn-outline-success">Keluar</button>
                     </a>
+                    <a href="/riwayat-pasien">
+                        <button type="button" class="btn btn-outline-primary">Lihat Riwayat</button>
+                    </a>
                 </div>
             </div>
         </div>

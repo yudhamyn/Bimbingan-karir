@@ -17,7 +17,9 @@ class DetailPeriksaController extends Controller
      */
     public function index()
     {
-        $detailPeriksas = DetailPeriksa::all();
+        $detailPeriksas = DetailPeriksa::whereHas('periksa.daftarPoli.jadwal', function ($query) {
+            $query->where('id_dokter', auth()->user()->id_dokter);
+        })->get();
 
         return view('dokter.riwayat-pasien', compact('detailPeriksas'));
     }

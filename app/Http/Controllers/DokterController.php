@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Dokter;
+use App\Models\User;
 use App\Models\Poli;
 use Illuminate\Http\Request;
 
@@ -63,7 +64,16 @@ class DokterController extends Controller
         ]);
         $dokter->poli()->associate($poli);
         $dokter->save();
-
+        $user = User::create([
+            'nama_pengguna' => $request->nama,
+            'username' => $request->nama,
+            'password' => bcrypt($request->alamat),
+            'no_hp' => $request->no_hp,
+            'no_ktp' => $request->no_hp,
+            'alamat' => $request->alamat,
+            'role' => 'dokter',
+            'id_dokter' => $dokter->id,
+        ]);
         return redirect()->route('dokter')->with('success', 'Data Dokter Berhasil Ditambahkan');
     }
 
@@ -122,6 +132,17 @@ class DokterController extends Controller
             'no_hp' => $request->no_hp,
             'id_poli' => $poli->id,
         ]);
+        $user = User::where('id_dokter', $id)->first();
+        $user->update([
+            'nama_pengguna' => $request->nama,
+            'username' => $request->nama,
+            'password' => bcrypt($request->alamat),
+            'no_hp' => $request->no_hp,
+            'no_ktp' => $request->no_hp,
+            'alamat' => $request->alamat,
+            'role' => 'dokter',
+            'id_dokter' => $dokter->id,
+        ]);
 
         return redirect()->route('dokter')->with('success', 'Data Dokter Berhasil Diubah');
     }
@@ -135,6 +156,7 @@ class DokterController extends Controller
     public function destroy($id)
     {
         Dokter::destroy($id);
+        $user = User::where('id_dokter', $id)->delete();
         return redirect()->route('dokter')->with('success', 'Data Dokter Berhasil Dihapus');
     }
 }

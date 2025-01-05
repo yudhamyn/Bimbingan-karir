@@ -2,21 +2,26 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\User;
-use App\Models\Dokter;
+use App\Models\DaftarPoli;
+use App\Models\DetailPeriksa;
+use App\Models\Periksa;
+use App\Models\Obat;
 use Illuminate\Http\Request;
 
-class ProfileController extends Controller
+class RiwayatPasienController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $dokter = User::where('id', auth()->user()->id)->first();
-        return view('dokter.profil', compact('dokter'));
+        $detailPeriksas = DetailPeriksa::whereHas('periksa.daftarPoli.pasien', function ($query) use ($request) {
+            $query->where('no_ktp',$request->session()->get('no_ktp'));
+        })->get();
+
+        return view('pasien.riwayat-pasien', compact('detailPeriksas'));
     }
 
     /**
@@ -71,25 +76,7 @@ class ProfileController extends Controller
      */
     public function update(Request $request, $id)
     {
-        
-        $user = User::where('id', $id)->first();
-        $dokter = Dokter::find($user->id_dokter);
-        $dokter->update([
-            'nama' => $request->nama_pengguna,
-            'alamat' => $request->alamat,
-            'no_hp' => $request->no_hp,
-
-        ]);
-        $user->update([
-            'nama_pengguna' => $request->nama_pengguna,
-            'username' => $request->nama_pengguna,
-            'password' => bcrypt($request->alamat),
-            'alamat' => $request->alamat,
-            'no_telp' => $request->no_hp,
-        ]);
-
-        return redirect()->route('profil')->with('success', 'Profil berhasil diubah!');
-        ;
+        //
     }
 
     /**

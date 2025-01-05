@@ -17,7 +17,9 @@ class PeriksaController extends Controller
      */
     public function index()
     {
-        $daftarPolis = DaftarPoli::all();
+        $daftarPolis = DaftarPoli::whereHas('jadwal', function ($query) {
+            $query->where('id_dokter', auth()->user()->id_dokter);
+        })->get();
         return view('dokter.memeriksa-pasien', compact('daftarPolis'));
     }
 

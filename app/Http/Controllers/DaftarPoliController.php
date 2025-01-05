@@ -32,7 +32,7 @@ class DaftarPoliController extends Controller
     {
         $poliID = $request->id_poli;
 
-        $jadwals = Jadwal::whereHas('dokter', function ($q) use ($poliID) {
+        $jadwals = Jadwal::where('aktif','Y')->whereHas('dokter', function ($q) use ($poliID) {
             $q->where('id_poli', $poliID);
         })->with('dokter')->get();
 
