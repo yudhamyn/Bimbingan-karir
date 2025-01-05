@@ -14,9 +14,7 @@
     <link href="{{ asset('OnePage/assets/img/apple-touch-icon.png') }}" rel="apple-touch-icon">
 
     <!-- Google Fonts -->
-    <link
-        href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i"
-        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
 
     <!-- Vendor CSS Files -->
     <link href="{{ asset('OnePage/assets/vendor/aos/aos.css') }}" rel="stylesheet">
@@ -33,128 +31,109 @@
 </head>
 
 <body>
-
     <main id="main">
-        <!-- ======= Hero Section ======= -->
+        <!-- Hero Section -->
         <section id="hero" class="d-flex align-items-center">
             <div class="container position-relative" data-aos="fade-up" data-aos-delay="100">
                 <div class="row justify-content-center">
-                    <div class="mb-5 col-xl-7 col-lg-9 text-center">
-                        <h1>Pendaftaran Poliklinik</h1>
-                        <h2>Sistem Temu Janji Pasien - Dokter</h2>
+                    <div class="col-xl-7 col-lg-9 text-center mb-5">
+                        <h1 class="display-4 fw-bold">Pendaftaran Poliklinik</h1>
+                        <p class="lead">Sistem Temu Janji Pasien - Dokter</p>
                     </div>
 
-                    <div class="card p-0">
-                        <div class="card-header bg-secondary text-white">
-                            <h3 class="card-title text-bold">
-                                Daftar Poli
-                            </h3>
+                    <div class="card shadow">
+                        <div class="card-header bg-secondary text-white text-center">
+                            <h3 class="card-title mb-0">Formulir Daftar Poli</h3>
                         </div>
                         <form action="{{ route('pasien.daftarpoli.store') }}" method="POST">
                             @csrf
                             <div class="card-body">
-                                <div class="form-group">
+                                <div class="form-group mb-3">
                                     <label for="no_rm">Nomor Rekam Medis</label>
-                                    <input required type="text" name="no_rm" class="form-control" id="no_rm"
-                                        placeholder="Nomor Rekam Medis" value="{{ $pasien->no_rm }}" disabled>
+                                    <input type="text" class="form-control" id="no_rm" name="no_rm" 
+                                           placeholder="Nomor Rekam Medis" value="{{ $pasien->no_rm }}" disabled>
                                 </div>
-                                <div class="form-group">
+                                <div class="form-group mb-3">
                                     <label for="id_poli">Pilih Poli</label>
-                                    <select required name="id_poli" id="id_poli" class="form-control">
+                                    <select class="form-control" id="id_poli" name="id_poli" required>
                                         <option value="">-- Pilih Poli --</option>
                                         @foreach ($polis as $poli)
                                             <option value="{{ $poli->id }}">{{ $poli->nama_poli }}</option>
                                         @endforeach
                                     </select>
                                     @error('id_poli')
-                                        {{ $message }}
+                                        <div class="text-danger">{{ $message }}</div>
                                     @enderror
                                 </div>
-
-                                <div class="form-group">
+                                <div class="form-group mb-3">
                                     <label for="id_jadwal">Pilih Jadwal</label>
-                                    <select required name="id_jadwal" id="id_jadwal" class="form-control" disabled>
+                                    <select class="form-control" id="id_jadwal" name="id_jadwal" disabled required>
                                         <option value="">-- Pilih Jadwal --</option>
                                     </select>
                                     @error('id_jadwal')
-                                        {{ $message }}
+                                        <div class="text-danger">{{ $message }}</div>
                                     @enderror
                                 </div>
-
-                                <div class="form-group">
+                                <div class="form-group mb-3">
                                     <label for="keluhan">Keluhan</label>
-                                    <textarea class="form-control" name="keluhan" id="keluhan" cols="30" rows="10"
-                                        placeholder="Mohon tuliskan keluhan anda disini"></textarea>
+                                    <textarea class="form-control" id="keluhan" name="keluhan" rows="4"
+                                              placeholder="Tuliskan keluhan Anda di sini"></textarea>
                                 </div>
-
                             </div>
-                            <!-- /.card-body -->
 
                             <div class="card-footer d-flex justify-content-between">
                                 <div>
                                     <button type="submit" class="btn btn-primary">Submit</button>
                                     <button type="reset" class="btn btn-secondary">Reset</button>
                                 </div>
-                                <a href="/riwayat-pasien">
-                        <button type="button" class="btn btn-outline-primary">Lihat Riwayat</button>
-                    </a>
-                                <a href="/pasien/logout">
-                                    <button class="logout-style btn btn-danger" data-toggle="tooltip"
-                                        data-placement="top" title="Logout" type="button">
-                                        <span class="glyphicon glyphicon-off" aria-hidden="true"></span> Keluar
-                                    </button>
-                                </a>
+                                <div>
+                                    <a href="/riwayat-pasien" class="btn btn-outline-primary">Lihat Riwayat</a>
+                                    <a href="/pasien/logout" class="btn btn-danger">Keluar</a>
+                                </div>
                             </div>
                         </form>
                     </div>
                 </div>
-        </section><!-- End Hero -->
-    </main><!-- End #main -->
+            </div>
+        </section>
+    </main>
 
     <div id="preloader"></div>
-    <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i
-            class="bi bi-arrow-up-short"></i></a>
+    <a href="#" class="back-to-top d-flex align-items-center justify-content-center">
+        <i class="bi bi-arrow-up-short"></i>
+    </a>
+
     <script>
-        $('#id_poli').on('change', function() {
-            var poliID = $(this).val();
+        $(document).ready(function() {
+            $('#id_poli').on('change', function() {
+                var poliID = $(this).val();
 
-            $('#id_jadwal').prop('disabled', true);
+                $('#id_jadwal').prop('disabled', true).empty().append('<option value="">-- Pilih Jadwal --</option>');
 
-            $.get('/getJadwals', {
-                id_poli: poliID
-            }, function(data) {
-
-                $('#id_jadwal').empty();
-
-                $('#id_jadwal').prop('disabled', data.length === 0);
-
-                if (data.length === 0) {
-                    $('#id_jadwal').append('<option value="">-- Pilih Jadwal --</option>');
+                if (poliID) {
+                    $.get('/getJadwals', { id_poli: poliID }, function(data) {
+                        if (data.length > 0) {
+                            $('#id_jadwal').prop('disabled', false);
+                            data.forEach(function(jadwal) {
+                                $('#id_jadwal').append(
+                                    `<option value="${jadwal.id}">${jadwal.dokter.nama} - ${jadwal.hari} (${jadwal.jam_mulai}-${jadwal.jam_selesai})</option>`
+                                );
+                            });
+                        }
+                    });
                 }
-
-                $.each(data, function(index, jadwal) {
-                    $('#id_jadwal').append('<option value="' + jadwal.id + '">' + jadwal.dokter
-                        .nama +
-                        ' - ' +
-                        jadwal.hari + ' (' + jadwal.jam_mulai + '-' + jadwal.jam_selesai + ')' +
-                        '</option>');
-                });
             });
-
         });
     </script>
+
     <!-- Vendor JS Files -->
-    <script src="{{ asset('OnePage/assets/vendor/purecounter/purecounter_vanilla.js') }}"></script>
     <script src="{{ asset('OnePage/assets/vendor/aos/aos.js') }}"></script>
     <script src="{{ asset('OnePage/assets/vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
     <script src="{{ asset('OnePage/assets/vendor/glightbox/js/glightbox.min.js') }}"></script>
-    <script src="{{ asset('OnePage/assets/vendor/isotope-layout/isotope.pkgd.min.js') }}"></script>
     <script src="{{ asset('OnePage/assets/vendor/swiper/swiper-bundle.min.js') }}"></script>
-    <script src="{{ asset('OnePage/assets/vendor/php-email-form/validate.js') }}"></script>
 
     <!-- Template Main JS File -->
     <script src="{{ asset('OnePage/assets/js/main.js') }}"></script>
-
 </body>
 
 </html>
